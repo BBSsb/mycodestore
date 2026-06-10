@@ -33,5 +33,8 @@ python manage.py createsuperuser
 
 
 4.导出依赖命令
-pip freeze > requirements.txt 
+pip freeze > requirements.txt PIP冻结要求。txt
+
+5.运行命令
+python manage.py runserver
 
