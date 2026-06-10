@@ -1,0 +1,7 @@
+[project]
+name = "django-learn"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "automium-web>=0.1.1",
+]

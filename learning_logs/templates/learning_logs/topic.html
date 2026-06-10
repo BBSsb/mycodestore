@@ -1,0 +1,55 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'learning_logs:topics' %}">Topics</a></li>
+                <li class="breadcrumb-item active">{{ topic.text }}</li>
+            </ol>
+        </nav>
+
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h2 class="h4 mb-0">📝 {{ topic.text }}</h2>
+            </div>
+            <div class="card-body">
+                <p class="text-muted mb-0">Created: {{ topic.date_added|date:"Y-m-d H:i" }}</p>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="h4 mb-0">Entries</h3>
+            <a href="{% url 'learning_logs:new_entry' topic.id %}" class="btn btn-success">
+                ➕ Add New Entry
+            </a>
+        </div>
+
+        {% if entries %}
+        <div class="row">
+            {% for entry in entries %}
+            <div class="col-12 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <p class="text-muted mb-0">
+                                <small>📅 {{ entry.date_added|date:"Y年m月d日 H:i" }}</small>
+                            </p>
+                            <a href="{% url 'learning_logs:edit_entry' entry.id %}"
+                               class="btn btn-sm btn-outline-primary">✏️ Edit</a>
+                        </div>
+                        <p class="card-text">{{ entry.text|linebreaks }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="alert alert-info" role="alert">
+            ℹ️ No entries have been added yet for this topic.
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,31 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="mb-0">📋 Topics</h1>
+            <a href="{% url 'learning_logs:new_topic' %}" class="btn btn-success">
+                ➕ Add New Topic
+            </a>
+        </div>
+
+        {% if topics %}
+        <div class="list-group">
+            {% for topic in topics %}
+            <a href="{% url 'learning_logs:topic' topic.id %}"
+               class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                <span>{{ topic.text }}</span>
+                <small class="text-muted">{{ topic.date_added|date:"Y-m-d" }}</small>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="alert alert-info" role="alert">
+            ℹ️ No topics have been added yet.
+            <a href="{% url 'learning_logs:new_topic' %}" class="alert-link">Create your first topic</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}
