@@ -1,3 +1,14 @@
 ll_env/
+.venv/
 __pycache__/
-*.sqlite3""
+*.sqlite3
+db.sqlite3
+*.pyc
+*.pyo
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+media/
+staticfiles/
